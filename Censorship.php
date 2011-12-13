@@ -20,7 +20,7 @@ function anti_sopa_censor(&$text)
 		return;
 	
 	// save HTML tags
-	$text = preg_split('/(<a class="downloadbutton.*?<\/a>|<script[^>]*>.*?<\/script>|<(?:[a-z\/].+?|!--.+?--)>)/m', $text, NULL, PREG_SPLIT_DELIM_CAPTURE);
+	$text = preg_split('/(<a .*?<\/a>|<script[^>]*>.*?<\/script>|<(?:[a-z\/].+?|!--.+?--)>)/s', $text, NULL, PREG_SPLIT_DELIM_CAPTURE);
 	foreach ( $text as &$block )
 	{
 		if ( strlen($block) < 1 )
