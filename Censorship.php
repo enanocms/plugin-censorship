@@ -23,6 +23,8 @@ function anti_sopa_censor(&$text)
 	$text = preg_split('/(<(?:[a-z\/].+?|!--.+?--)>|<script[^>]*>[\w\W]*?<\/script>)/', $text, NULL, PREG_SPLIT_DELIM_CAPTURE);
 	foreach ( $text as &$block )
 	{
+		if ( strlen($block) < 1 )
+			continue;
 		if ( $block{0} == '<' )
 			continue;
 		
