@@ -14,6 +14,11 @@ $plugins->attachHook('render_wikiformat_post', 'anti_sopa_censor($text);');
 
 function anti_sopa_censor(&$text)
 {
+	// don't censor the stop-sopa page
+	global $db, $session, $paths, $template, $plugins; // Common objects
+	if ( $paths->page_id == 'activism/stop-sopa' && $paths->namespace == 'Article' )
+		return;
+	
 	// save HTML tags
 	$text = preg_split('/(<(?:[a-z\/].+?|!--.+?--)>|<script[^>]*>[\w\W]*?<\/script>)/', $text, NULL, PREG_SPLIT_DELIM_CAPTURE);
 	foreach ( $text as &$block )
